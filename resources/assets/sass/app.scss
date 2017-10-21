@@ -1,9 +1,104 @@
 
 // Fonts
-@import url("https://fonts.googleapis.com/css?family=Raleway:300,400,600");
+@import url('https://fonts.googleapis.com/css?family=Raleway:300,400,600');
 
 // Variables
-@import "variables";
+@import 'variables';
 
 // Bootstrap
-@import "~bootstrap-sass/assets/stylesheets/bootstrap";
+@import '~bootstrap-sass/assets/stylesheets/bootstrap';
+
+//Colors
+$accent-blue: #4cb0fc;
+$accent-yellow: #ffc033;
+$accent-pink: #ec4989;
+
+$background-grey: #f5f6f9;
+$background-white: #fff;
+
+$shadow-grey: #737172;
+
+body
+{
+    background-color: $background-grey;
+}
+#sidebar
+{
+    position: fixed;
+    z-index: 1000;
+    top: 0;
+    left: 0;
+
+    width: 200px;
+    height: 100%;
+
+    background-color: $background-white;
+    box-shadow: -8px 2px 20px $shadow-grey;
+}
+.sidebar--header
+{
+    padding: 10px;
+    padding-top: 30px;
+}
+.sidebar--logo
+{
+    width: 60%;
+    height: auto;
+
+    object-fit: contain;
+}
+.sidebar--title
+{
+    padding-top: 5px;
+    padding-left: 0;
+}
+.sidebar--user__picture
+{
+    width: 30px;
+    height: 30px;
+
+    border-radius: 50% 50%;
+
+    object-fit: cover;
+}
+.sidebar--user
+{
+    padding-top: 30px;
+}
+.sidebar--dropdown
+{
+    padding-top: 30px;
+
+    text-align: center;
+}
+.sidebar--navigation
+{
+    h1
+    {
+        font-size: 12px;
+        font-weight: 400;
+    }
+    span
+    {
+        font-size: 11px;
+    }
+}
+.sidebar--navigation__option
+{
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+.box-xs-flashcard
+{
+    height: 90px;
+    margin: 10px;
+
+    background: $background-white;
+}
+.box-md-flashcard
+{
+    height: 300px;
+    margin: 10px;
+
+    background: $background-white;
+}
