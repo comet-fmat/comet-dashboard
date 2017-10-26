@@ -61,7 +61,7 @@
   
   <!-- dashboard summary -->
   <div class="row">
-  
+    <!-- bar graph -->
     <div class="col-sm-6">
       <div class="box-md-flashcard">
         <h2 class="flashcard--title">PROMEDIO DEL GRUPO</h2>
@@ -107,6 +107,8 @@
           </script>
       </div>
     </div>
+    <!-- ends bar graph -->
+    <!-- homework summary-->
     <div class="col-sm-6">
       <div class="box-md-flashcard">
         <h2 class="flashcard--title">TAREAS EN CURSO</h2>
@@ -136,6 +138,9 @@
         </table>
       </div>
     </div>
+    <!-- ends homework summary-->
+  
+    <!-- students summary-->
     <div class="col-sm-7">
       <div class="box-md-flashcard">
         <h2 class="flashcard--title">ALUMNOS</h2>
@@ -180,6 +185,9 @@
         </table>
       </div>
     </div>
+    <!-- ends students summary-->
+    
+    <!-- topic summary-->
     <div class="col-sm-5">
       <div class="box-md-flashcard">
         <h2 class="flashcard--title">TEMAS</h2>
@@ -209,6 +217,7 @@
         </table>
       </div>
     </div>
+    <!-- ends topic summary-->
   </div>
   
   <!-- ends dashboard summary -->

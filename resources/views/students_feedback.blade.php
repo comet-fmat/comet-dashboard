@@ -169,8 +169,9 @@
         </table>
       </div>
     </div>
-      <!-- ends homework summary -->
-      <!-- topic summary -->
+    <!-- ends homework summary -->
+    
+    <!-- topic summary -->
     <div class="col-sm-6">
       <div class="box-md-flashcard">
         <h2 class="flashcard--title">TEMAS</h2>
@@ -200,8 +201,8 @@
         </table>
       </div>
     </div>
+    <!-- ends topic summary -->
   </div>
-  <!-- ends topic summary -->
-  
-  <!-- ends student summary -->
+
+  <!-- ends homework summary -->
 @endsection

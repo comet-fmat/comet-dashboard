@@ -2,11 +2,11 @@
 @section('content')
   <h1 class="content--title">Programación I</h1>
   
-  <!-- homework summary -->
+  <!-- course summary -->
   <div class="row">
     <!-- top graphic summary -->
-    <!-- top graph 1 -->
-
+    
+    <!-- linear graph-->
     <div class="col-sm-4">
       <div class="box-md-flashcard">
       <h2 class="flashcard--title">PROMEDIO DEL GRUPO</h2>
@@ -37,8 +37,6 @@
                   ],
                   borderWidth: 1
               }],
-
-              // These labels appear in the legend and in the tooltips when hovering different arcs
               labels: [
                   'Red',
                   'Yellow',
@@ -49,7 +47,9 @@
       </script>
     </div>
     </div>
-    <!-- ends graph 1 -->
+    <!-- ends linear graph -->
+    
+    <!-- donut graphs-->
     <div class="col-sm-8">
       <div class="box-md-flashcard">
         <div class="row">
@@ -84,8 +84,6 @@
                         ],
                         borderWidth: 1
                     }],
-
-                    // These labels appear in the legend and in the tooltips when hovering different arcs
                     labels: [
                         'Red',
                         'Yellow',
@@ -141,6 +139,8 @@
         </div>
       </div>
     </div>
+    <!-- ends donut graphs-->
+    
     <!-- ends top graphic summary -->
     
     <!-- homework summary -->
@@ -173,8 +173,9 @@
         </table>
       </div>
     </div>
-      <!-- ends homework summary -->
-      <!-- topic summary -->
+    <!-- ends homework summary -->
+    
+    <!-- topic summary -->
     <div class="col-sm-6">
       <div class="box-md-flashcard">
         <h2 class="flashcard--title">TEMAS</h2>
@@ -204,8 +205,8 @@
         </table>
       </div>
     </div>
+    <!-- ends topic summary -->
+    
   </div>
-  <!-- ends topic summary -->
-  
-  <!-- ends student summary -->
+  <!-- ends course summary -->
 @endsection
