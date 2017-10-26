@@ -39,13 +39,13 @@
   <div class="col-xs-12">
     <h1>RESUMEN</h1>
       <div class="col-xs-12 sidebar--navigation__option">
-      <span>Panorama</span>
+      <span><a href='{{ route('home') }}'>Panorama</a></span>
       </div>
       <div class="col-xs-12 sidebar--navigation__option">
-      <span>Tareas en Curso</span>
+      <span><a href='{{ route('homeworks') }}'>Tareas</a></span>
       </div>
       <div class="col-xs-12 sidebar--navigation__option">
-      <span>Alumnos</span>
+      <span><a href='{{ route('students') }}'>Alumnos</a></span>
       </div>
       <div class="col-xs-12 sidebar--navigation__option">
       <span>Calendario</span>
@@ -57,13 +57,13 @@
   <div class="col-xs-12">
     <h1>RETROALIMENTACION</h1>
       <div class="col-xs-12 sidebar--navigation__option">
-      <span>Tareas</span>
+      <span><a href='{{ route('homeworks_feedback') }}'>Tareas</a></span>
       </div>
       <div class="col-xs-12 sidebar--navigation__option">
-      <span>Cursos</span>
+      <span><a href='{{ route('course_feedback') }}'>Curso</a></span>
       </div>
       <div class="col-xs-12 sidebar--navigation__option">
-      <span>Alumnos</span>
+      <span><a href='{{ route('students_feedback') }}'>Alumnos</a></span>
       </div>
   </div>
 </div>

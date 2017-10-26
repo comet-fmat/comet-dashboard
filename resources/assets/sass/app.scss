@@ -13,6 +13,8 @@ $accent-blue: #4cb0fc;
 $accent-yellow: #ffc033;
 $accent-pink: #ec4989;
 
+$text-grey: #95989a;
+
 $background-grey: #f5f6f9;
 $background-white: #fff;
 
@@ -92,13 +94,64 @@ body
 {
     height: 90px;
     margin: 10px;
+    padding: 10px;
 
     background: $background-white;
 }
 .box-md-flashcard
 {
+    overflow-y: scroll;
+
     height: 300px;
     margin: 10px;
+    padding: 20px;
 
     background: $background-white;
+}
+.box-lg-flashcard
+{
+    height: auto;
+    margin: 10px;
+    padding: 20px;
+
+    background: $background-white;
+}
+.content--title
+{
+    font-size: 18px;
+}
+.flashcard--tag
+{
+    font-size: 12px;
+
+    display: block;
+
+    color: $accent-blue;
+}
+.flashcard--title
+{
+    font-size: 12px;
+
+    display: block;
+
+    margin-top: 0;
+
+    color: $text-grey;
+}
+.flashcard--icon
+{
+    width: 50px;
+    height: 50px;
+    margin: 10px;
+
+    object-fit: contain;
+}
+.flashcard--number
+{
+    font-size: 25px;
+    font-weight: 400;
+
+    display: block;
+
+    color: $text-grey;
 }

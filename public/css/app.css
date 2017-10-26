@@ -8417,12 +8417,54 @@ body {
 .box-xs-flashcard {
   height: 90px;
   margin: 10px;
+  padding: 10px;
   background: #fff;
 }
 
 .box-md-flashcard {
+  overflow-y: scroll;
   height: 300px;
   margin: 10px;
+  padding: 20px;
   background: #fff;
+}
+
+.box-lg-flashcard {
+  height: auto;
+  margin: 10px;
+  padding: 20px;
+  background: #fff;
+}
+
+.content--title {
+  font-size: 18px;
+}
+
+.flashcard--tag {
+  font-size: 12px;
+  display: block;
+  color: #4cb0fc;
+}
+
+.flashcard--title {
+  font-size: 12px;
+  display: block;
+  margin-top: 0;
+  color: #95989a;
+}
+
+.flashcard--icon {
+  width: 50px;
+  height: 50px;
+  margin: 10px;
+  -o-object-fit: contain;
+     object-fit: contain;
+}
+
+.flashcard--number {
+  font-size: 25px;
+  font-weight: 400;
+  display: block;
+  color: #95989a;
 }
 
