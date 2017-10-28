@@ -14,6 +14,7 @@ $accent-yellow: #ffc033;
 $accent-pink: #ec4989;
 
 $text-grey: #95989a;
+$text-white: #fff;
 
 $background-grey: #f5f6f9;
 $background-white: #fff;
@@ -116,6 +117,7 @@ body
 
     background: $background-white;
 }
+
 .content--title
 {
     font-size: 18px;
@@ -154,4 +156,45 @@ body
     display: block;
 
     color: $text-grey;
+}
+.flashcard--input
+{
+    margin: 10px 15px;
+}
+.box-login-flashcard
+{
+    height: auto;
+    margin: 10px;
+    margin-top: 40%;
+    padding: 20px;
+
+    background: $background-white;
+}
+.login--logo
+{
+    width: 60%;
+    height: auto;
+    padding-top: 30px;
+
+    object-fit: contain;
+}
+.login--button
+{
+    width: 80%;
+    margin: 10px;
+    padding: 2px;
+
+    color: $text-white;
+    background: $accent-blue;
+}
+.login--input
+{
+    border: none;
+    border-bottom: 1px solid #ccd0d2;
+    border-radius: 0;
+    box-shadow: none;
+}
+.login--form
+{
+    margin-top: 30px;
 }
