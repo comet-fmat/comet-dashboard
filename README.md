@@ -27,12 +27,20 @@ If you're not in the mood to read, [Laracasts](https://laracasts.com) contains o
 
 ## Laravel Mix
 Mix is a configuration layer on top of Webpack, so to run your Mix tasks you only need to execute one of the NPM scripts that is included with the default Laravel package.json file:
+```bash
+#Installing 
+node -v
+npm -v
+npm install
 
-// Run all Mix tasks...
+# Run all Mix tasks...
 npm run dev
 
-// Run all Mix tasks and minify output...
+# Run all Mix tasks and minify output...
 npm run production
+
+npm run watch
+```
 
 ## Contributing
 
