@@ -25,6 +25,11 @@ body
 {
     background-color: $background-grey;
 }
+.table > thead > tr > td
+{
+    border-top: none;
+    border-bottom: 1px solid $shadow-grey;
+}
 #sidebar
 {
     position: fixed;
@@ -98,6 +103,7 @@ body
     padding: 10px;
 
     background: $background-white;
+    box-shadow: -8px 2px 20px $shadow-grey;
 }
 .box-md-flashcard
 {
@@ -146,7 +152,14 @@ body
     height: 50px;
     margin: 10px;
 
+    opacity: .5;
+
     object-fit: contain;
+}
+.flashcard--dot
+{
+    width: 10px;
+    height: 10px;
 }
 .flashcard--number
 {
