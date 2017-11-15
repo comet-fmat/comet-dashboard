@@ -48,7 +48,7 @@
       <span><a href='{{ route('students') }}'>Alumnos</a></span>
       </div>
       <div class="col-xs-12 sidebar--navigation__option">
-      <span>Calendario</span>
+      <span><a href='{{ route('calendar') }}'>Calendario</a></span>
       </div>
   </div>
 </div>
