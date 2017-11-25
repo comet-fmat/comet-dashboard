@@ -11,14 +11,45 @@ class CourseController extends Controller
     public function index(){
         $teacherId = session('teacher_id');
 
+        //All teachers courses
         $teachersCourses = Course::Where('organization_id', $teacherId)->get();
-        return $teachersCourses;
+
+        //Data view reply
+        $viewData =[
+            'teacherCourses' =>  $teachersCourses
+        ];
+
+        return $viewData;
     }
-    public function show($course){
-        $exercises = Exercise::Where('course_id', $course)->get();
-        return $exercises;
-        //Average
-        //
+
+    public function display($course){
+        $viewData = [];
+
+        //Number of exercises
+        $numExercises = $course->exercises->count();
+
+        //List of exercises
+        $exercises = $course->exercises->get();
+
+        //Number of students
+        $numStudents = $course->students->count();
+
+        //List of students
+        $students = $course->students->get();
+
+        //Data view reply
+        $viewData =[
+            'numExercises' => $numExercises,
+            'exercises' => $exercises,
+            'scoreAverage' => '',
+            'numStudents'=> $numStudents,
+            'students'=> $students,
+            'numRiskStudents'=> '',
+            'successRateGraphData' => ''
+
+        ];
+
+        return $viewData;
 
     }
 }

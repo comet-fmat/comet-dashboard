@@ -11,9 +11,8 @@
 |
 */
 
-Route::get('/', function () {
-    return view('home');
-})->name('home');
+
+Route::get('/home/{course}', 'CourseController@display')->name('home');
 
 Route::get('/login', function () {
     return view('login');
