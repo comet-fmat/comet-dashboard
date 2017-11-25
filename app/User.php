@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+
 //osea students...
 class User extends Model
 {
@@ -31,5 +32,4 @@ class User extends Model
     public function average(){
 
     }
-
 }

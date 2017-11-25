@@ -31,4 +31,5 @@ class Exercise extends Model
     public function testCases(){
 
     }
+
 }
