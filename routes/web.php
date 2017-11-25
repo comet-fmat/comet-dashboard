@@ -11,9 +11,8 @@
 |
 */
 
-Route::get('/', function () {
-    return view('home');
-})->name('home');
+
+Route::get('/home/{course}', 'CourseController@display')->name('home');
 
 Route::get('/login', function () {
     return view('login');
@@ -38,3 +37,6 @@ Route::get('/homeworksfeedback', function () {
 Route::get('/coursefeedback', function () {
     return view('course_feedback');
 })->name('course_feedback');
+
+Route::get('/calendar', 'CalendarController@initCalendar')->name('calendar');
+
