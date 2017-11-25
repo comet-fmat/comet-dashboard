@@ -21,7 +21,7 @@
       <div class="box-xs-flashcard">
         <div class="row">
           <div class="col-sm-5">
-            <img class="flashcard--icon" src="images/icon-graduationHat.png" />
+            <img class="flashcard--icon" src="images/icon-book.png" />
           </div>
           <div class="col-sm-7">
             <span class="flashcard--number">3</span>
@@ -34,7 +34,7 @@
       <div class="box-xs-flashcard">
         <div class="row">
           <div class="col-sm-5">
-            <img class="flashcard--icon" src="images/icon-graduationHat.png" />
+            <img class="flashcard--icon" src="images/icon-note.png" />
           </div>
           <div class="col-sm-7">
             <span class="flashcard--number">18</span>
@@ -47,7 +47,7 @@
       <div class="box-xs-flashcard">
         <div class="row">
           <div class="col-sm-5">
-            <img class="flashcard--icon" src="images/icon-graduationHat.png" />
+            <img class="flashcard--icon" src="images/icon-person.png" />
           </div>
           <div class="col-sm-7">
             <span class="flashcard--number">4</span>
@@ -115,21 +115,25 @@
         <table class="table">
           <tbody>
             <tr>
+              <td><img class="flashcard--dot" src="images/dark_blue_circle.png" /></td>
               <td>T4U1</td>
               <td>31/35</td>
               <td>89.5</td>
             </tr>
             <tr>
+              <td><img class="flashcard--dot" src="images/yellow_circle.png" /></td>
               <td>T3U1</td>
               <td>34/35</td>
               <td>95.4</td>
             </tr>
             <tr>
+              <td><img class="flashcard--dot" src="images/light_blue_circle.png" /></td>
               <td>T2U1</td>
               <td>35/35</td>
               <td>88.2</td>
             </tr>
             <tr>
+              <td><img class="flashcard--dot" src="images/dark_blue_circle.png" /></td>
               <td>T1U1</td>
               <td>35/35</td>
               <td>89.5</td>
