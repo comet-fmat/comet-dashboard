@@ -1,6 +1,8 @@
 @extends('layout/main')
 @section('content')
   <h1 class="content--title">Dashboard</h1>
+  {{--dd(get_defined_vars())--}}
+
   <!-- top summary -->
   <div class="row">
   
@@ -8,10 +10,10 @@
       <div class="box-xs-flashcard">
         <div class="row">
           <div class="col-sm-5">
-            <img class="flashcard--icon" src="images/icon-graduationHat.png" />
+            <img class="flashcard--icon" src="/images/icon-graduationHat.png" />
           </div>
           <div class="col-sm-7">
-            <span class="flashcard--number">35</span>
+            <span class="flashcard--number">{{$data['numStudents']}}</span>
             <span class="flashcard--tag">Alumnos</span>
           </div>
         </div>
@@ -21,11 +23,11 @@
       <div class="box-xs-flashcard">
         <div class="row">
           <div class="col-sm-5">
-            <img class="flashcard--icon" src="images/icon-book.png" />
+            <img class="flashcard--icon" src="/images/icon-book.png" />
           </div>
           <div class="col-sm-7">
-            <span class="flashcard--number">3</span>
-            <span class="flashcard--tag">Temas</span>
+            <span class="flashcard--number">{{$data['scoreAverage']}}</span>
+            <span class="flashcard--tag">Promedio</span>
           </div>
         </div>
       </div>
@@ -34,10 +36,10 @@
       <div class="box-xs-flashcard">
         <div class="row">
           <div class="col-sm-5">
-            <img class="flashcard--icon" src="images/icon-note.png" />
+            <img class="flashcard--icon" src="/images/icon-note.png" />
           </div>
           <div class="col-sm-7">
-            <span class="flashcard--number">18</span>
+            <span class="flashcard--number">{{$data['numExercises']}}</span>
             <span class="flashcard--tag">Tareas</span>
           </div>
         </div>
@@ -47,10 +49,10 @@
       <div class="box-xs-flashcard">
         <div class="row">
           <div class="col-sm-5">
-            <img class="flashcard--icon" src="images/icon-person.png" />
+            <img class="flashcard--icon" src="/images/icon-person.png" />
           </div>
           <div class="col-sm-7">
-            <span class="flashcard--number">4</span>
+            <span class="flashcard--number">{{$data['numRiskStudents']}}</span>
             <span class="flashcard--tag">Alumnos en Riesgo</span>
           </div>
         </div>
@@ -71,10 +73,10 @@
           var myChart = new Chart(ctx, {
               type: 'bar',
               data: {
-                  labels: ["Red", "Blue", "Yellow", "Green", "Purple", "Orange"],
+                  labels: [<?php echo '"'.implode('","',  $data['successRateGraphData']['labels'] ).'"' ?>],
                   datasets: [{
-                      label: '# of Votes',
-                      data: [12, 19, 3, 5, 2, 3],
+                      label: 'Entregas',
+                      data: [<?php echo '"'.implode('","',  $data['successRateGraphData']['data'] ).'"' ?>],
                       backgroundColor: [
                           'rgba(255, 99, 132, 0.2)',
                           'rgba(54, 162, 235, 0.2)',
@@ -114,30 +116,13 @@
         <h2 class="flashcard--title">TAREAS EN CURSO</h2>
         <table class="table">
           <tbody>
-            <tr>
-              <td><img class="flashcard--dot" src="images/dark_blue_circle.png" /></td>
-              <td>T4U1</td>
-              <td>31/35</td>
-              <td>89.5</td>
-            </tr>
-            <tr>
-              <td><img class="flashcard--dot" src="images/yellow_circle.png" /></td>
-              <td>T3U1</td>
-              <td>34/35</td>
-              <td>95.4</td>
-            </tr>
-            <tr>
-              <td><img class="flashcard--dot" src="images/light_blue_circle.png" /></td>
-              <td>T2U1</td>
-              <td>35/35</td>
-              <td>88.2</td>
-            </tr>
-            <tr>
-              <td><img class="flashcard--dot" src="images/dark_blue_circle.png" /></td>
-              <td>T1U1</td>
-              <td>35/35</td>
-              <td>89.5</td>
-            </tr>
+            @foreach($data['exercises'] as $exercise)
+              <tr>
+                <td><img class="flashcard--dot" src="/images/dark_blue_circle.png" /></td>
+                <td>{{$exercise['name']}}</td>
+                <td>{{$exercise['publish_time']}}</td>
+              </tr>
+            @endforeach
           </tbody>
         </table>
       </div>
@@ -145,83 +130,23 @@
     <!-- ends homework summary-->
   
     <!-- students summary-->
-    <div class="col-sm-7">
+    <div class="col-sm-12">
       <div class="box-md-flashcard">
         <h2 class="flashcard--title">ALUMNOS</h2>
         <table class="table">
           <tbody>
+          @foreach($data['students'] as $student)
             <tr>
-              <td>Alexis</td>
-              <td>Dominguez</td>
-              <td>97.5</td>
+              <td>{{$student['login']}}</td>
+              <td>{{$student['login']}}</td>
             </tr>
-            <tr>
-              <td>Mariana</td>
-              <td>Milano</td>
-              <td>96.5</td>
-            </tr>
-            <tr>
-              <td>Julio</td>
-              <td>Fernandez</td>
-              <td>93.4</td>
-            </tr>
-            <tr>
-              <td>Ana</td>
-              <td>Perez</td>
-              <td>92.8</td>
-            </tr>
-            <tr>
-              <td>Sergio</td>
-              <td>Tamez</td>
-              <td>90.0</td>
-            </tr>
-            <tr>
-              <td>Pedro</td>
-              <td>Cantú</td>
-              <td>89.2</td>
-            </tr>
-            <tr>
-              <td>Ernesto</td>
-              <td>Aguilar</td>
-              <td>85.4</td>
-            </tr>
+            @endforeach
           </tbody>
         </table>
       </div>
     </div>
     <!-- ends students summary-->
-    
-    <!-- topic summary-->
-    <div class="col-sm-5">
-      <div class="box-md-flashcard">
-        <h2 class="flashcard--title">TEMAS</h2>
-        <table class="table">
-          <tbody>
-            <tr>
-              <td>Metodologías de Programación</td>
-              <td>5 tareas</td>
-              <td>89.5</td>
-            </tr>
-            <tr>
-              <td>Tipos de Datos Primitivos</td>
-              <td>3 tareas</td>
-              <td>95.4</td>
-            </tr>
-            <tr>
-              <td>Estructuras de Control</td>
-              <td>3 tareas</td>
-              <td>88.2</td>
-            </tr>
-            <tr>
-              <td>Métodos de Iteración</td>
-              <td>2 tareas</td>
-              <td>89.5</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-    </div>
-    <!-- ends topic summary-->
+
   </div>
   
   <!-- ends dashboard summary -->
