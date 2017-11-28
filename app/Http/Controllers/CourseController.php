@@ -22,34 +22,42 @@ class CourseController extends Controller
         return $viewData;
     }
 
-    public function display($course){
+    public function display(Course $course){
         $viewData = [];
 
         //Number of exercises
         $numExercises = $course->exercises->count();
 
         //List of exercises
-        $exercises = $course->exercises->get();
+        $exercises = $course->exercises->toArray();
 
         //Number of students
         $numStudents = $course->students->count();
 
         //List of students
-        $students = $course->students->get();
+        $students = $course->students->toArray();
+
+        //Score Average
+        $scoreAverage = $course->scoreAverage();
+
+        //Success Rate
+        $sucessRate = $course->successRateGraphData();
+
 
         //Data view reply
         $viewData =[
             'numExercises' => $numExercises,
             'exercises' => $exercises,
-            'scoreAverage' => '',
+            'scoreAverage' => $scoreAverage,
             'numStudents'=> $numStudents,
             'students'=> $students,
             'numRiskStudents'=> '',
-            'successRateGraphData' => ''
+            'successRateGraphData' => $sucessRate
 
         ];
+        return view("home", ["data"=>$viewData]);
 
-        return $viewData;
+
 
     }
 }

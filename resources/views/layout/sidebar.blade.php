@@ -2,7 +2,7 @@
 <!-- sidebar header -->
 <div class="row sidebar--header">
   <div class="col-xs-4 text-center">
-    <img class="sidebar--logo" src="images/logo-tmc.png" />
+    <img class="sidebar--logo" src="/images/logo-tmc.png" />
   </div>
   <div class="col-xs-8 sidebar--title">
     <spans>testmycode</span>
@@ -13,7 +13,7 @@
 <!-- sidebar user -->
 <div class="row sidebar--user">
   <div class="col-xs-4 text-center">
-    <img class="sidebar--user__picture" src="images/profile_picture-user.jpg" />
+    <img class="sidebar--user__picture" src="/images/profile_picture-user.jpg" />
   </div>
   <div class="col-xs-8 sidebar--title">
     <spans>Mr. John Green</span>

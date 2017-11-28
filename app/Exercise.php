@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Exercise extends Model
 {
     public function submissions(){
-        return $this->hasMany('App\Submissions', 'exercise_name');
+        return $this->hasMany('App\Submission', 'exercise_name', 'name');
     }
     public function runs(){
         return $this->hasManyThrough(
@@ -40,7 +40,7 @@ class Exercise extends Model
     }
     public function submissionsAverage(){
         $average = 0;
-        $submissions = $this->submissions->get();
+        $submissions = $this->submissions;
 
         foreach ($submissions as $submission) {
             $average = $average + $submission->points;
