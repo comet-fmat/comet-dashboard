@@ -5,7 +5,7 @@
     <img class="sidebar--logo" src="/images/logo-tmc.png" />
   </div>
   <div class="col-xs-8 sidebar--title">
-    <spans>testmycode</span>
+    <span>testmycode</span>
   </div>
 </div>
 <!-- ends sidebar header -->
@@ -16,7 +16,7 @@
     <img class="sidebar--user__picture" src="/images/profile_picture-user.jpg" />
   </div>
   <div class="col-xs-8 sidebar--title">
-    <spans>Mr. John Green</span>
+    <span>Mr. John Green</span>
   </div>
 </div>
 <!-- ends sidebar user -->
@@ -39,16 +39,16 @@
   <div class="col-xs-12">
     <h1>RESUMEN</h1>
       <div class="col-xs-12 sidebar--navigation__option">
-      <span><a href='{{ route('home') }}'>Panorama</a></span>
+      <span><a href='{{ route('course',1) }}'>Panorama</a></span>
       </div>
       <div class="col-xs-12 sidebar--navigation__option">
-      <span><a href='{{ route('homeworks') }}'>Tareas</a></span>
+      <span><a href='{{ route('exercises',1) }}'>Tareas</a></span>
       </div>
       <div class="col-xs-12 sidebar--navigation__option">
-      <span><a href='{{ route('students') }}'>Alumnos</a></span>
+      <span><a href='{{ route('students',1) }}'>Alumnos</a></span>
       </div>
       <div class="col-xs-12 sidebar--navigation__option">
-      <span><a href='{{ route('calendar') }}'>Calendario</a></span>
+      <span><a href='{{ route('calendar',1) }}'>Calendario</a></span>
       </div>
   </div>
 </div>
