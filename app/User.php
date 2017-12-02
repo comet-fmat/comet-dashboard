@@ -7,6 +7,10 @@ use Illuminate\Database\Eloquent\Model;
 //osea students...
 class User extends Model
 {
+    protected $visible = ['id', 'login', 'average'];
+
+    protected $appends = array('average');
+
     public function submissions(){
         return $this->hasMany('App\Submissions');
 
@@ -29,7 +33,8 @@ class User extends Model
     public function exercisePoints($exercise){
 
     }
-    public function average(){
-
+    public function getAverageAttribute(){
+    return 10;
     }
+
 }

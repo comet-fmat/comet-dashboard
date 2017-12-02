@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 
 class CourseController extends Controller
 {
+
     public function index(){
         $teacherId = session('teacher_id');
 
@@ -23,6 +24,7 @@ class CourseController extends Controller
     }
 
     public function display(Course $course){
+
         $viewData = [];
 
         //Number of exercises
@@ -35,7 +37,17 @@ class CourseController extends Controller
         $numStudents = $course->students->count();
 
         //List of students
+        $listStudents = [];
+
         $students = $course->students->toArray();
+
+//        foreach ($students as $student){
+//            array_push( $listStudents,
+//                [
+//                    'name' => $student->login,
+//                    'average' => $student->average()
+//                ]);
+//        }
 
         //Score Average
         $scoreAverage = $course->scoreAverage();

@@ -12,26 +12,12 @@
         <td>Promedio</td>
       </thead>
       <tbody>
+      @foreach($data['exercises'] as $exercise)
         <tr>
-          <td>T4U1</td>
-          <td>31/35</td>
-          <td>89.5</td>
+          <td>{{$exercise['name']}}</td>
+          <td>{{$exercise['publish_time']}}</td>
         </tr>
-        <tr>
-          <td>T3U1</td>
-          <td>34/35</td>
-          <td>95.4</td>
-        </tr>
-        <tr>
-          <td>T2U1</td>
-          <td>35/35</td>
-          <td>88.2</td>
-        </tr>
-        <tr>
-          <td>T1U1</td>
-          <td>35/35</td>
-          <td>89.5</td>
-        </tr>
+      @endforeach
 
       </tbody>
     </table>

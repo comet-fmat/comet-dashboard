@@ -2,23 +2,24 @@
 
 namespace App\Http\Controllers;
 
+use App\Course;
 use App\Exercise;
 use Illuminate\Http\Request;
 
 class ExerciseController extends Controller
 {
-    public function index($course){
+    public function index(Course $course){
         $viewData = [];
 
         //All course exercises
-        $exercises = $course->exercises->get();
+        $exercises = $course->exercises->toArray();
 
         //Data view reply
         $viewData =[
             'exercises' => $exercises
         ];
 
-        return $viewData;
+        return view("exercises", ["data"=>$viewData]);
     }
 
     public function display(Exercise $exercise)

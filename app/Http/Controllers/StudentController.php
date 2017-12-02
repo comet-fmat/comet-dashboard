@@ -2,25 +2,26 @@
 
 namespace App\Http\Controllers;
 
+use App\Course;
 use Illuminate\Http\Request;
 
 class StudentController extends Controller
 {
-    public function index($course){
+    public function index(Course $course){
         $viewData = [];
 
         //All course students
-        $students = $course->students->get();
+        $students = $course->students->toArray();
 
         //Data view reply
         $viewData =[
             'students' => $students
         ];
 
-        return $viewData;
+        return view("students", ["data"=>$viewData]);
     }
 
-    public function display($student){
+    public function display(Student $student){
         $viewData = [];
 
         //Number of exercises
@@ -43,7 +44,7 @@ class StudentController extends Controller
         ];
 
 
-        return $viewData;
+        return view("students", ["data"=>$viewData]);
 
     }
 }

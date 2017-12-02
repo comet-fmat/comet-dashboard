@@ -13,18 +13,14 @@
 
 
 Route::get('/home/', 'CourseController@display')->name('home');
+
 Route::get('/course/{course}', 'CourseController@display')->name('course');
 Route::get('/login', function () {
     return view('login');
 })->name('login');
 
-Route::get('/students', function () {
-    return view('students');
-})->name('students');
-
-Route::get('/homeworks', function () {
-    return view('homeworks');
-})->name('homeworks');
+Route::get('/course/{course}/students', 'StudentController@index')->name('students');
+Route::get('/course/{course}/exercises', 'ExerciseController@index')->name('exercises');
 
 Route::get('/studentsfeedback', function () {
     return view('students_feedback');
