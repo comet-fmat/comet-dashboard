@@ -13,7 +13,7 @@
             <img class="flashcard--icon" src="/images/icon-graduationHat.png" />
           </div>
           <div class="col-sm-7">
-            <span class="flashcard--number">{{$data['numStudents']}}</span>
+            <span class="flashcard--number">{{$data['number_students']}}</span>
             <span class="flashcard--tag">Alumnos</span>
           </div>
         </div>
@@ -26,7 +26,7 @@
             <img class="flashcard--icon" src="/images/icon-book.png" />
           </div>
           <div class="col-sm-7">
-            <span class="flashcard--number">{{$data['scoreAverage']}}</span>
+            <span class="flashcard--number">{{$data['score_average']}}</span>
             <span class="flashcard--tag">Promedio</span>
           </div>
         </div>
@@ -39,7 +39,7 @@
             <img class="flashcard--icon" src="/images/icon-note.png" />
           </div>
           <div class="col-sm-7">
-            <span class="flashcard--number">{{$data['numExercises']}}</span>
+            <span class="flashcard--number">{{$data['number_exercises']}}</span>
             <span class="flashcard--tag">Tareas</span>
           </div>
         </div>
@@ -52,7 +52,7 @@
             <img class="flashcard--icon" src="/images/icon-person.png" />
           </div>
           <div class="col-sm-7">
-            <span class="flashcard--number">{{$data['numRiskStudents']}}</span>
+            <span class="flashcard--number">{{$data['students_at_risk']}}</span>
             <span class="flashcard--tag">Alumnos en Riesgo</span>
           </div>
         </div>
@@ -73,10 +73,10 @@
           var myChart = new Chart(ctx, {
               type: 'bar',
               data: {
-                  labels: [<?php echo '"'.implode('","',  $data['successRateGraphData']['labels'] ).'"' ?>],
+                  labels: [<?php echo '"'.implode('","',  $data['success_rate']['labels'] ).'"' ?>],
                   datasets: [{
                       label: 'Entregas',
-                      data: [<?php echo '"'.implode('","',  $data['successRateGraphData']['data'] ).'"' ?>],
+                      data: [<?php echo '"'.implode('","',  $data['success_rate']['data'] ).'"' ?>],
                       backgroundColor: [
                           'rgba(255, 99, 132, 0.2)',
                           'rgba(54, 162, 235, 0.2)',

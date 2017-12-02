@@ -25,51 +25,8 @@ class CourseController extends Controller
 
     public function display(Course $course){
 
-        $viewData = [];
-
-        //Number of exercises
-        $numExercises = $course->exercises->count();
-
-        //List of exercises
-        $exercises = $course->exercises->toArray();
-
-        //Number of students
-        $numStudents = $course->students->count();
-
-        //List of students
-        $listStudents = [];
-
-        $students = $course->students->toArray();
-
-//        foreach ($students as $student){
-//            array_push( $listStudents,
-//                [
-//                    'name' => $student->login,
-//                    'average' => $student->average()
-//                ]);
-//        }
-
-        //Score Average
-        $scoreAverage = $course->scoreAverage();
-
-        //Success Rate
-        $sucessRate = $course->successRateGraphData();
-
-
-        //Data view reply
-        $viewData =[
-            'numExercises' => $numExercises,
-            'exercises' => $exercises,
-            'scoreAverage' => $scoreAverage,
-            'numStudents'=> $numStudents,
-            'students'=> $students,
-            'numRiskStudents'=> '',
-            'successRateGraphData' => $sucessRate
-
-        ];
+        $viewData = $course->toArray();
         return view("home", ["data"=>$viewData]);
-
-
 
     }
 }

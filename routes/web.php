@@ -21,6 +21,7 @@ Route::get('/login', function () {
 
 Route::get('/course/{course}/students', 'StudentController@index')->name('students');
 Route::get('/course/{course}/exercises', 'ExerciseController@index')->name('exercises');
+Route::get('/course/{course}/exercises/{exercise}', 'ExerciseController@display')->name('exercise_detail');
 
 Route::get('/studentsfeedback', function () {
     return view('students_feedback');

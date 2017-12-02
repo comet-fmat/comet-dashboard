@@ -6,6 +6,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class Course extends Model
 {
+    protected $visible = ['id', 'name', 'exercises', 'number_exercises', 'score_average', 'students', 'number_students', 'success_rate','students_at_risk'];
+    protected $appends = array('score_average', 'number_exercises','number_students', 'success_rate', 'students_at_risk');
+
     public function exercises()
     {
         return $this->hasMany('App\Exercise');
@@ -22,28 +25,38 @@ class Course extends Model
         );
     }
 
-    public function scoreAverage(){
+    public function getScoreAverageAttribute(){
         $average = 0;
         $exercises = $this->exercises;
 
         foreach ($exercises as $exercise) {
-            $average = $average + $exercise->submissionsAverage();
+            $average = $average + $exercise->getSubmissionsAverageAttribute();
         }
+        $average = $average/$exercises->count();
 
         return $average;
 
     }
-    public function studentsAtRisk(){
-        //TODO
+    public function getStudentsAtRiskAttribute(){
+
+        $studentsAtRisk = 0;
+        $students = $this->students;
+        foreach ($students as $student) {
+            if($student->average < 5){
+                $studentsAtRisk++;
+            }
+        }
+
+        return $studentsAtRisk;
     }
-    public function successRateGraphData(){
+    public function getSuccessRateAttribute(){
 
         $graphXData = [];
         $graphYData = [];
         $exercises = $this->exercises;
         foreach ($exercises as $exercise) {
             array_push( $graphXData, $exercise->name);
-            array_push( $graphYData, $exercise->submissionsAverage());
+            array_push( $graphYData, $exercise->getSubmissionsAverageAttribute());
         }
         $successRate = [
             'labels' =>  $graphXData,
@@ -52,6 +65,16 @@ class Course extends Model
 
 
         return  $successRate;
+    }
+    public function getNumberExercisesAttribute(){
+
+        return $this->exercises->count();
+
+    }
+    public function getNumberStudentsAttribute(){
+
+        return $this->students->count();
+
     }
 
 }

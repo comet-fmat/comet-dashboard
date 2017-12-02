@@ -1,6 +1,7 @@
 @extends('layout/main')
 @section('content')
   <h1 class="content--title">Alumnos</h1>
+  {{--dd(get_defined_vars())--}}
   <!-- student list -->
   <div class="row">
     <div class="col-sm-12">
@@ -8,13 +9,18 @@
     <table class="table">
       <thead>
         <td>Nombre</td>
+        <td>Entregas</td>
+        <td>Promedio</td>
+        <td>Estatus</td>
 
       </thead>
       <tbody>
       @foreach($data['students'] as $student)
         <tr>
           <td>{{$student['login']}}</td>
-          <td>{{$student['login']}}</td>
+          <td>{{$student['number_submissions']}}</td>
+          <td>{{$student['average']}}</td>
+          <td>{{$student['risk_tag']}}</td>
         </tr>
       @endforeach
       </tbody>

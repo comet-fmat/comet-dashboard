@@ -6,9 +6,14 @@ use Illuminate\Database\Eloquent\Model;
 
 class Exercise extends Model
 {
+    protected $visible = ['id', 'name', 'course_id','publish_time','number_submissions','submissions_average','available_points'];
+
+    protected $appends = array('submissions_average', 'available_points','number_submissions');
+
     public function submissions(){
         return $this->hasMany('App\Submission', 'exercise_name', 'name');
     }
+
     public function runs(){
         return $this->hasManyThrough(
             'App\TestCaseRun',
@@ -38,21 +43,29 @@ class Exercise extends Model
         return $awardedPoints;
 
     }
-    public function submissionsAverage(){
+    public function getSubmissionsAverageAttribute(){
         $average = 0;
         $submissions = $this->submissions;
 
         foreach ($submissions as $submission) {
             $average = $average + $submission->points;
         }
+        $average = $average/ $submissions->count();
 
         return $average;
 
     }
-    public function availablePoints(){
+
+    public function getNumberSubmissionsAttribute(){
+        return $this->submissions()->count();
+
+    }
+
+    public function getAvailablePointsAttribute(){
         return $this->hasOne('App\AvailablePoint');
 
     }
+
     public function testCases(){
         //TODO
         return null;
