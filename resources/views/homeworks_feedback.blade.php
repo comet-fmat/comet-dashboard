@@ -1,7 +1,7 @@
 @extends('layout/main')
 @section('content')
-  <h1 class="content--title">Tarea T2U1</h1>
-  
+  <h1 class="content--title">Tarea {{$data['name']}}</h1>
+  {{--dd(get_defined_vars())--}}
   <!-- homework summary -->
   <div class="row">
     <!-- top graphic summary -->
@@ -12,14 +12,14 @@
           <div class="col-sm-4">
             <h2 class="flashcard--title">PROMEDIO DEL GRUPO</h2>
             <canvas id="myChart" width="auto" height="auto"></canvas>
-              
+
             <script>
             var ctx = document.getElementById("myChart").getContext('2d');
             var myDoughnutChart = new Chart(ctx, {
                 type: 'doughnut',
                 data: {
                     datasets: [{
-                        data: [10, 20, 30],
+                        data: [{{$data['submissions_average']}}, {{10-$data['submissions_average']}}],
                         backgroundColor: [
                             'rgba(255, 99, 132, 0.2)',
                             'rgba(54, 162, 235, 0.2)',
@@ -41,9 +41,9 @@
 
                     // These labels appear in the legend and in the tooltips when hovering different arcs
                     labels: [
-                        'Red',
-                        'Yellow',
-                        'Blue'
+                        'Promedio',
+                        'Total'
+
                     ]
                 }
             });
@@ -52,7 +52,7 @@
           <!-- ends graph 1 -->
           <!-- top graph 2 -->
           <div class="col-sm-4">
-            <h2 class="flashcard--title">PROMEDIO DEL GRUPO</h2>
+            <h2 class="flashcard--title">ENTREGAS</h2>
             <canvas id="myChart2" width="auto" height="auto"></canvas>
               
             <script>
@@ -61,7 +61,7 @@
                 type: 'doughnut',
                 data: {
                     datasets: [{
-                        data: [40, 20, 40],
+                        data: [{{$data['number_course_students']}}, {{$data['number_submissions']}}],
                         backgroundColor: [
                             'rgba(255, 99, 132, 0.2)',
                             'rgba(54, 162, 235, 0.2)',
@@ -83,9 +83,8 @@
 
                     // These labels appear in the legend and in the tooltips when hovering different arcs
                     labels: [
-                        'Red',
-                        'Yellow',
-                        'Blue'
+                        'Entregas Faltantes',
+                        'Tareas Entregadas'
                     ]
                 }
             });
@@ -144,42 +143,21 @@
       <div class="box-lg-flashcard">
         <h2 class="flashcard--title">ALUMNOS</h2>
         <table class="table">
+          <thead>
+          <td>Alumno</td>
+          <td>Puntos</td>
+          <td>Estado</td>
+          <td>Error</td>
+          </thead>
           <tbody>
+          @foreach($data['submissions'] as $submission)
             <tr>
-              <td>Alexis</td>
-              <td>Dominguez</td>
-              <td>97.5</td>
+              <td>{{$submission['student_name']}}</td>
+              <td>{{$submission['points']}}</td>
+              <td>{{$submission['all_tests_passed']}}</td>
+              <td>{{$submission['pretest_error']}}</td>
             </tr>
-            <tr>
-              <td>Mariana</td>
-              <td>Milano</td>
-              <td>96.5</td>
-            </tr>
-            <tr>
-              <td>Julio</td>
-              <td>Fernandez</td>
-              <td>93.4</td>
-            </tr>
-            <tr>
-              <td>Ana</td>
-              <td>Perez</td>
-              <td>92.8</td>
-            </tr>
-            <tr>
-              <td>Sergio</td>
-              <td>Tamez</td>
-              <td>90.0</td>
-            </tr>
-            <tr>
-              <td>Pedro</td>
-              <td>Cantú</td>
-              <td>89.2</td>
-            </tr>
-            <tr>
-              <td>Ernesto</td>
-              <td>Aguilar</td>
-              <td>85.4</td>
-            </tr>
+          @endforeach
           </tbody>
         </table>
       </div>

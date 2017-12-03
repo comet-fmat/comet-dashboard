@@ -6,12 +6,15 @@ use Illuminate\Database\Eloquent\Model;
 
 class Exercise extends Model
 {
-    protected $visible = ['id', 'name', 'course_id','publish_time','number_submissions','submissions_average','available_points'];
+    protected $visible = ['id', 'name', 'students','submissions','course_id','publish_time','number_submissions','number_course_students','submissions_average','available_points'];
 
-    protected $appends = array('submissions_average', 'available_points','number_submissions');
+    protected $appends = array('submissions_average', 'available_points','number_submissions', 'number_course_students');
 
     public function submissions(){
         return $this->hasMany('App\Submission', 'exercise_name', 'name');
+    }
+    public function course(){
+        return $this->belongsTo('App\Course', 'course_id', 'id');
     }
 
     public function runs(){
@@ -27,11 +30,11 @@ class Exercise extends Model
     public function students(){
         return $this->hasManyThrough(
             'App\User',
-            'App\Submissions',
+            'App\Submission',
             'exercise_name',
-            'name',
             'id',
-            'id'
+            'name',
+            'user_id'
         );
 
     }
@@ -69,6 +72,12 @@ class Exercise extends Model
     public function testCases(){
         //TODO
         return null;
+    }
+
+    public function getNumberCourseStudentsAttribute(){
+
+        return $this->course->number_students;
+
     }
 
 }

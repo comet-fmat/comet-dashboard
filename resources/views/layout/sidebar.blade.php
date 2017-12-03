@@ -57,7 +57,7 @@
   <div class="col-xs-12">
     <h1>RETROALIMENTACION</h1>
       <div class="col-xs-12 sidebar--navigation__option">
-      <span><a href='{{ route('homeworks_feedback') }}'>Tareas</a></span>
+      <span><a href='{{ route('exercise_detail',[1,1]) }}'>Tareas</a></span>
       </div>
       <div class="col-xs-12 sidebar--navigation__option">
       <span><a href='{{ route('course_feedback') }}'>Curso</a></span>

@@ -22,31 +22,9 @@ class ExerciseController extends Controller
         return view("exercises", ["data"=>$viewData]);
     }
 
-    public function display(Exercise $exercise)
+    public function display(Course $course, Exercise $exercise)
     {
-        $viewData = [];
-
-        //Number of students
-        $numStudents = $exercise->students->count();
-
-        //List of students
-        $students = $exercise->students->get();
-
-        //Number of submissions
-        $numSubmissions = $exercise->submissions->count();
-
-        //Submissions average
-        $submissionsAverage = $exercise->submissionsAverage();
-
-        //Data view reply
-        $viewData = [
-            'numStudents' => $numStudents,
-            'students' => $students,
-            'numSubmissions' => $numSubmissions,
-            'submissionsAverage' => $submissionsAverage
-        ];
-
-
-        return $viewData;
+        $viewData = $exercise->toArray();
+        return view("homeworks_feedback", ["data"=>$viewData]);
     }
 }
