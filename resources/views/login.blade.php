@@ -16,7 +16,7 @@
             <div class="form-group">
               <input type="password" class="form-control login--input" placeholder="contrasena" id="pwd">
             </div>
-            <button type="button" class="btn login--button">Log in</button>
+            <button type="button" id="login-button" class="btn login--button">Log in</button>
           </div>
           
         </div>
@@ -25,4 +25,11 @@
         
     </div>
   </div>
+  <script>
+      $(document).ready(function() {
+          $("#login-button").click(function(){
+              window.location.href='https://cometdashboard.herokuapp.com/course/4';
+          });
+      });
+  </script>
 @endsection

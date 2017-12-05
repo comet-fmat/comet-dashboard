@@ -15,7 +15,7 @@
 Route::get('/home/', 'CourseController@display')->name('home');
 
 Route::get('/course/{course}', 'CourseController@display')->name('course');
-Route::get('/login', function () {
+Route::get('/', function () {
     return view('login');
 })->name('login');
 
