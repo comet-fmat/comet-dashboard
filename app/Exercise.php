@@ -55,7 +55,7 @@ class Exercise extends Model
         }
         $average = $average/ $submissions->count();
 
-        return $average;
+        return number_format($average,2);
 
     }
 

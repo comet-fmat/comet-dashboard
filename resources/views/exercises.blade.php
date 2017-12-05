@@ -18,7 +18,7 @@
       @foreach($data['exercises'] as $exercise)
         <tr>
           <td>{{$exercise['id']}}</td>
-          <td>{{$exercise['name']}}</td>
+          <td> <a href="{{ route('exercise_detail',[$current,$exercise['id']]) }}"> {{$exercise['name']}}</a></td>
           <td>{{$exercise['publish_time']}}</td>
           <td>{{$exercise['number_submissions']}}</td>
           <td>{{$exercise['submissions_average']}}</td>

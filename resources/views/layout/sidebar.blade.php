@@ -23,13 +23,16 @@
 
 <!-- sidebar dropdown -->
 <div class="sidebar--dropdown dropdown">
-  <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-    Programación I
+  <button class="btn btn-default dropdown-toggle" type="button" id="course-select-menu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+    {{$courses->first()->name}}
     <span class="caret"></span>
   </button>
-  <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-    <li><a href="#">Programación II</a></li>
-    <li><a href="#">Fund. Programación</a></li>
+  <ul class="dropdown-menu" aria-labelledby="course-select-menu">
+    @foreach($courses as $course)
+      <li><a href="{{ route('course',$course->id) }}">{{$course->name}}</a></li>
+    @endforeach
+
+
   </ul>
 </div>
 <!-- ends sidebar dropdown -->
@@ -39,21 +42,21 @@
   <div class="col-xs-12">
     <h1>RESUMEN</h1>
       <div class="col-xs-12 sidebar--navigation__option">
-      <span><a href='{{ route('course',1) }}'>Panorama</a></span>
+      <span><a href='{{ route('course',$current) }}'>Panorama</a></span>
       </div>
       <div class="col-xs-12 sidebar--navigation__option">
-      <span><a href='{{ route('exercises',1) }}'>Tareas</a></span>
+      <span><a href='{{ route('exercises',$current) }}'>Lista de Tareas</a></span>
       </div>
       <div class="col-xs-12 sidebar--navigation__option">
-      <span><a href='{{ route('students',1) }}'>Alumnos</a></span>
+      <span><a href='{{ route('students',$current) }}'>Lista de Alumnos</a></span>
       </div>
       <div class="col-xs-12 sidebar--navigation__option">
-      <span><a href='{{ route('calendar',1) }}'>Calendario</a></span>
+      <span><a href='{{ route('calendar',$current) }}'>Calendario</a></span>
       </div>
   </div>
 </div>
 
-<div class="row sidebar--navigation">
+{{--<div class="row sidebar--navigation">
   <div class="col-xs-12">
     <h1>RETROALIMENTACION</h1>
       <div class="col-xs-12 sidebar--navigation__option">
@@ -66,5 +69,7 @@
       <span><a href='{{ route('students_feedback') }}'>Alumnos</a></span>
       </div>
   </div>
-</div>
+</div>--}}
 <!-- ends sidebar navigation -->
+
+

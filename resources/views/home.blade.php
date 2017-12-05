@@ -75,7 +75,7 @@
               data: {
                   labels: [<?php echo '"'.implode('","',  $data['success_rate']['labels'] ).'"' ?>],
                   datasets: [{
-                      label: 'Entregas',
+                      label: 'Promedio',
                       data: [<?php echo '"'.implode('","',  $data['success_rate']['data'] ).'"' ?>],
                       backgroundColor: [
                           'rgba(255, 99, 132, 0.2)',
@@ -117,11 +117,17 @@
         <table class="table">
           <tbody>
             @foreach($data['exercises'] as $exercise)
+
               <tr>
-                <td><img class="flashcard--dot" src="/images/dark_blue_circle.png" /></td>
-                <td>{{$exercise['name']}}</td>
-                <td>{{$exercise['publish_time']}}</td>
+                    <td><img class="flashcard--dot" src="/images/dark_blue_circle.png" /></td>
+                    <td>Tarea # {{$exercise['id']}}</td>
+                    <td>  <a href="{{ route('exercise_detail',[$current,$exercise['id']]) }}"> {{$exercise['name']}}</a></td>
+                    <td>{{$exercise['publish_time']}}</td>
+
+
+
               </tr>
+
             @endforeach
           </tbody>
         </table>

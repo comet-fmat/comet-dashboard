@@ -18,13 +18,15 @@ class ExerciseController extends Controller
         $viewData =[
             'exercises' => $exercises
         ];
+        $courses = Course::get(['id','name']);
 
-        return view("exercises", ["data"=>$viewData]);
+        return view("exercises", ["data"=>$viewData, "courses"=>$courses, "current"=>$course->id]);
     }
 
     public function display(Course $course, Exercise $exercise)
     {
         $viewData = $exercise->toArray();
-        return view("homeworks_feedback", ["data"=>$viewData]);
+        $courses = Course::get(['id','name']);
+        return view("homeworks_feedback", ["data"=>$viewData, "courses"=>$courses, "current"=>$course->id]);
     }
 }

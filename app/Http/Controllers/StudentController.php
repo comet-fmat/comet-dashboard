@@ -17,8 +17,9 @@ class StudentController extends Controller
         $viewData =[
             'students' => $students
         ];
+        $courses = Course::get(['id','name']);
 
-        return view("students", ["data"=>$viewData]);
+        return view("students", ["data"=>$viewData, "courses"=>$courses, "current"=>$course->id]);
     }
 
     public function display(Student $student){

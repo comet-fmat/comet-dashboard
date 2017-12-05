@@ -34,7 +34,7 @@ class Course extends Model
         }
         $average = $average/$exercises->count();
 
-        return $average;
+        return number_format($average,2);
 
     }
     public function getStudentsAtRiskAttribute(){
@@ -55,7 +55,7 @@ class Course extends Model
         $graphYData = [];
         $exercises = $this->exercises;
         foreach ($exercises as $exercise) {
-            array_push( $graphXData, $exercise->name);
+            array_push( $graphXData, 'Tarea #'.$exercise->id);
             array_push( $graphYData, $exercise->getSubmissionsAverageAttribute());
         }
         $successRate = [
