@@ -36,8 +36,20 @@ class User extends Model
 
     }
 
-    public function getAverageAttribute(){
-        return 10;
+    public function getAverageAttribute() {
+        $average = 0;
+        $submissions = $this->submissions;
+
+        if (count($submissions) > 0) {
+            foreach ($submissions as $submission) {
+                $average = $average + $submission->points;
+            }
+            $average = $average/ $submissions->count();
+
+            return number_format($average,2);
+        } else {
+            return 0;
+        }
     }
 
     public function getNumberSubmissionsAttribute(){
@@ -47,12 +59,14 @@ class User extends Model
     public function getRiskTagAttribute(){
         $riskTag = '';
 
-        if($this->average < 5){
-            $riskTag = 'En riesgo';
-        }elseif( 5 < $this->average & $this->average < 8){
-            $riskTag = 'Regular';
+        if ($this->average < 5) {
+            $riskTag = 'en riesgo';
+        } elseif ($this->average < 8) {
+            $riskTag = 'regular';
+        } elseif ($this->average < 9) {
+            $riskTag = 'bueno';
         } else {
-            $riskTag = 'Sobresaliente';
+            $riskTag = 'sobresaliente';
         }
 
         return $riskTag;

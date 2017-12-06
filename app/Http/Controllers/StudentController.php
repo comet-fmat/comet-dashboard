@@ -44,7 +44,9 @@ class StudentController extends Controller
             'scoreAverage' => '',
             'numSubmissions'=> $numSubmissions,
             'submissionsAverage' =>'',
-            'studentName' => $student->login
+            'studentName' => $student->login,
+            'studentAverage' => $student->average,
+            'studentRiskTag' => $student->risk_tag
         ];
 
         return view("students_feedback", [
