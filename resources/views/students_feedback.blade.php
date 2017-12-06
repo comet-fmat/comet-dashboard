@@ -59,7 +59,7 @@
             <script>
             var ctx = document.getElementById("myChart2").getContext('2d');
             var myDoughnutChart = new Chart(ctx, {
-                type: 'doughnut',
+                type: 'pie',
                 data: {
                     datasets: [{
                         data: [{{$data['numExercises']}}, {{$data['numCourseExercises'] - $data['numExercises']}}],
@@ -94,27 +94,32 @@
           <!-- ends graph 2 -->
           <!-- top graph 3 -->
           <div class="col-sm-4">
-            <h2 class="flashcard--title">PROMEDIO DEL GRUPO</h2>
+            <h2 class="flashcard--title">COMPILACIONES POR EJERCICIO</h2>
             <canvas id="myChart3" width="auto" height="auto"></canvas>
               
             <script>
             var ctx = document.getElementById("myChart3").getContext('2d');
             var myDoughnutChart = new Chart(ctx, {
-                type: 'doughnut',
+                type: 'bar',
                 data: {
                     datasets: [{
-                        data: [30, 50, 25],
+                        label: 'Compilaciones',
+                        data: [
+                          {{$data['minAmountSubmissionInExercises']}},
+                          {{$data['avgAmountSubmissionInExercises']}},
+                          {{$data['maxAmountSubmissionInExercises']}},
+                        ],
                         backgroundColor: [
-                            'rgba(255, 99, 132, 0.2)',
                             'rgba(54, 162, 235, 0.2)',
+                            'rgba(255, 99, 132, 0.2)',
                             'rgba(255, 206, 86, 0.2)',
                             'rgba(75, 192, 192, 0.2)',
                             'rgba(153, 102, 255, 0.2)',
                             'rgba(255, 159, 64, 0.2)'
                         ],
                         borderColor: [
-                            'rgba(255,99,132,1)',
                             'rgba(54, 162, 235, 1)',
+                            'rgba(255,99,132,1)',
                             'rgba(255, 206, 86, 1)',
                             'rgba(75, 192, 192, 1)',
                             'rgba(153, 102, 255, 1)',
@@ -123,12 +128,20 @@
                         borderWidth: 1
                     }],
 
-                    // These labels appear in the legend and in the tooltips when hovering different arcs
                     labels: [
-                        'Red',
-                        'Yellow',
-                        'Blue'
+                        'Menor',
+                        'Promedio',
+                        'Mayor'
                     ]
+                },
+                options: {
+                    scales: {
+                        yAxes: [{
+                            ticks: {
+                                beginAtZero: true
+                            }
+                        }]
+                    }
                 }
             });
             </script>

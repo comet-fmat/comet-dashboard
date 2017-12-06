@@ -83,6 +83,12 @@ class Exercise extends Model
         return $this->submissions()->count();
     }
 
+    public function getNumberSubmissionsByStudentAttribute($student) {
+        return $this->submissions
+            ->where('user_id', $student->id)
+            ->count();
+    }
+
     public function getAvailablePointsAttribute() {
         return $this->hasOne('App\AvailablePoint');
     }

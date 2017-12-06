@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\DB;
+use App\Submission;
 use App\Exercise;
 use App\Course;
 use App\User;
@@ -36,9 +38,31 @@ class StudentController extends Controller
         $numExercises = $exercises->count();
         $exercises = $exercises->toArray();
 
+        $maxAmountSubmissionInExercises = Submission::where('user_id', $student->id)
+            ->groupBy('exercise_name')
+            ->orderByRaw('count(*) desc')
+            ->limit(1)
+            ->count();
+
+        $minAmountSubmissionInExercises = Submission::where('user_id', $student->id)
+            ->groupBy('exercise_name')
+            ->orderByRaw('count(*) asc')
+            ->limit(1)
+            ->count();
+
+        $avgAmountSubmissionInExercises = Submission::where('user_id', $student->id)
+            ->selectRaw('count(*)')
+            ->groupBy('exercise_name')
+            ->get()
+            ->avg('count');
+
         $submissions = $student->submissions->sortBy('created_at');
 
         $viewData = [
+            'maxAmountSubmissionInExercises' => $maxAmountSubmissionInExercises,
+            'minAmountSubmissionInExercises' => $minAmountSubmissionInExercises,
+            'avgAmountSubmissionInExercises' => $avgAmountSubmissionInExercises,
+
             'numCourseExercises' => $numCourseExercises,
             'numExercises' => $numExercises,
             'exercises' => $exercises,
