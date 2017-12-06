@@ -20,6 +20,7 @@ Route::get('/', function () {
 })->name('login');
 
 Route::get('/course/{course}/students', 'StudentController@index')->name('students');
+Route::get('/course/{course}/students/{student}', 'StudentController@display')->name('student_detail');
 Route::get('/course/{course}/exercises', 'ExerciseController@index')->name('exercises');
 Route::get('/course/{course}/exercises/{exercise}', 'ExerciseController@display')->name('exercise_detail');
 
