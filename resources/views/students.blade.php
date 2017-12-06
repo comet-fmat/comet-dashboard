@@ -17,7 +17,7 @@
       <tbody>
       @foreach($data['students'] as $student)
         <tr>
-          <td>{{$student['login']}}</td>
+          <td> <a href="{{ route('student_detail',[$current,$student['id']]) }}"> {{$student['login']}}</a></td>
           <td>{{$student['number_submissions']}}</td>
           <td>{{$student['average']}}</td>
           <td>{{$student['risk_tag']}}</td>
