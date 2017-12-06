@@ -60,13 +60,13 @@ class User extends Model
         $riskTag = '';
 
         if ($this->average < 5) {
-            $riskTag = 'en riesgo';
-        } elseif ($this->average < 8) {
-            $riskTag = 'regular';
+            $riskTag = 'En riesgo';
+        } elseif ($this->average < 7) {
+            $riskTag = 'Regular';
         } elseif ($this->average < 9) {
-            $riskTag = 'bueno';
+            $riskTag = 'Apropiado';
         } else {
-            $riskTag = 'sobresaliente';
+            $riskTag = 'Sobresaliente';
         }
 
         return $riskTag;
