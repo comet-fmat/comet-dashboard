@@ -3,34 +3,38 @@
 namespace App\Http\Controllers;
 
 use App\CalendarEvent;
+use App\Course;
 use Illuminate\Http\Request;
 
 class CalendarController extends Controller
 {
-    public function initCalendar(){
+    public function initCalendar(Course $course){
         $events = [];
 
-        $events[] = \Calendar::event(
-            'Event One', //event title
-            false, //full day event?
-            '2017-11-11T0800', //start time (you can also use Carbon instead of DateTime)
-            '2015-11-12T0800', //end time (you can also use Carbon instead of DateTime)
-            0 //optionally, you can specify an event ID
-        );
+        $events =[
+            \Calendar::event(
+                "Semana de Ordinarios", //event title
+                true, //full day event?
+                new \DateTime('2017-12-1'), //start time (you can also use Carbon instead of DateTime)
+                new \DateTime('2017-12-8'), //end time (you can also use Carbon instead of DateTime)
+                'stringEventId' //optionally, you can specify an event ID
+            ),
+            \Calendar::event(
+                "Periodo Vacacional", //event title
+                true, //full day event?
+                new \DateTime('2017-12-19'), //start time (you can also use Carbon instead of DateTime)
+                new \DateTime('2017-12-29'), //end time (you can also use Carbon instead of DateTime)
+                'stringEventId' //optionally, you can specify an event ID
+            )
 
-        $events[] = \Calendar::event(
-            "Valentine's Day", //event title
-            true, //full day event?
-            new \DateTime('2017-11-14'), //start time (you can also use Carbon instead of DateTime)
-            new \DateTime('2012-11-14'), //end time (you can also use Carbon instead of DateTime)
-            'stringEventId' //optionally, you can specify an event ID
-        );
+        ] ;
         $calendar = \Calendar::addEvents($events) //add an array with addEvents
         ->setOptions([ //set fullcalendar options
             'firstDay' => 1
         ]);
 
+        $courses = Course::get(['id','name']);
+        return view('calendar', ["calendar"=>$calendar, "courses"=>$courses, "current"=>$course->id]);
 
-        return view('calendar', compact('calendar'));
     }
 }

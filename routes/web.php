@@ -35,5 +35,5 @@ Route::get('/coursefeedback', function () {
     return view('course_feedback');
 })->name('course_feedback');
 
-Route::get('/calendar', 'CalendarController@initCalendar')->name('calendar');
+Route::get('/course/{course}/calendar', 'CalendarController@initCalendar')->name('calendar');
 

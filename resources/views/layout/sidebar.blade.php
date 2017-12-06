@@ -24,7 +24,7 @@
 <!-- sidebar dropdown -->
 <div class="sidebar--dropdown dropdown">
   <button class="btn btn-default dropdown-toggle" type="button" id="course-select-menu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-    {{$courses->first()->name}}
+    {{$courses->find($current)->name}}
     <span class="caret"></span>
   </button>
   <ul class="dropdown-menu" aria-labelledby="course-select-menu">
