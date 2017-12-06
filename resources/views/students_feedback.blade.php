@@ -1,6 +1,6 @@
 @extends('layout/main')
 @section('content')
-  <h1 class="content--title">Alumno Alexis Dominguez</h1>
+  <h1 class="content--title">Vista general de <strong>{{$data['studentName']}}</strong></h1>
   
   <!-- homework summary -->
   <div class="row">
@@ -144,27 +144,19 @@
       <div class="box-md-flashcard">
         <h2 class="flashcard--title">TAREAS EN CURSO</h2>
         <table class="table">
+          <thead>
+            <td>No.</td>
+            <td>Ejercicio</td>
+            <td>Puntos</td>
+          </thead>
           <tbody>
+          @foreach($data['exercises'] as $exercise)
             <tr>
-              <td>T4U1</td>
-              <td>31/35</td>
-              <td>89.5</td>
+              <td>#{{$exercise['id']}}</td>
+              <td> <a href="{{ route('exercise_detail',[$current,$exercise['id']]) }}"> {{$exercise['name']}}</a></td>
+              <td>{{$exercise['average_for_student']}}</td>
             </tr>
-            <tr>
-              <td>T3U1</td>
-              <td>34/35</td>
-              <td>95.4</td>
-            </tr>
-            <tr>
-              <td>T2U1</td>
-              <td>35/35</td>
-              <td>88.2</td>
-            </tr>
-            <tr>
-              <td>T1U1</td>
-              <td>35/35</td>
-              <td>89.5</td>
-            </tr>
+          @endforeach
           </tbody>
         </table>
       </div>
@@ -177,26 +169,12 @@
         <h2 class="flashcard--title">TEMAS</h2>
         <table class="table">
           <tbody>
+          @foreach($data['exercises'] as $exercise)
             <tr>
-              <td>Metodologías de Programación</td>
-              <td>5 tareas</td>
-              <td>89.5</td>
+              <td>{{$exercise['id']}}</td>
+              <td>{{$exercise['name']}}</td>
             </tr>
-            <tr>
-              <td>Tipos de Datos Primitivos</td>
-              <td>3 tareas</td>
-              <td>95.4</td>
-            </tr>
-            <tr>
-              <td>Estructuras de Control</td>
-              <td>3 tareas</td>
-              <td>88.2</td>
-            </tr>
-            <tr>
-              <td>Métodos de Iteración</td>
-              <td>2 tareas</td>
-              <td>89.5</td>
-            </tr>
+          @endforeach
           </tbody>
         </table>
       </div>

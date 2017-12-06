@@ -8,25 +8,27 @@ use Illuminate\Database\Eloquent\Model;
 class User extends Model
 {
     protected $visible = ['id', 'login', 'average', 'number_submissions', 'risk_tag'];
-
-    protected $appends = array('average', 'number_submissions', 'risk_tag');
+    protected $appends = array('user_id', 'average', 'number_submissions', 'risk_tag');
 
     public function submissions(){
         return $this->hasMany('App\Submission');
-
     }
 
-    public function exercise()
-    {
+    public function getUserIdAttribute() {
+        return $this->id;
+    }
+
+    public function exercises() {
         return $this->hasManyThrough(
             'App\Exercise',
-            'App\Submissions',
-            'exercise_name',
+            'App\Submission',
+            'user_id',
             'name',
-            'id',
-            'id'
+            'user_id',
+            'exercise_name'
         );
     }
+
     public function points(){
 
     }
