@@ -53,7 +53,7 @@
           <!-- ends graph 1 -->
           <!-- top graph 2 -->
           <div class="col-sm-4">
-            <h2 class="flashcard--title">PROMEDIO DEL GRUPO</h2>
+            <h2 class="flashcard--title">TAREAS CON ENVÍO</h2>
             <canvas id="myChart2" width="auto" height="auto"></canvas>
               
             <script>
@@ -62,18 +62,18 @@
                 type: 'doughnut',
                 data: {
                     datasets: [{
-                        data: [40, 20, 40],
+                        data: [{{$data['numExercises']}}, {{$data['numCourseExercises'] - $data['numExercises']}}],
                         backgroundColor: [
-                            'rgba(255, 99, 132, 0.2)',
                             'rgba(54, 162, 235, 0.2)',
+                            'rgba(255, 99, 132, 0.2)',
                             'rgba(255, 206, 86, 0.2)',
                             'rgba(75, 192, 192, 0.2)',
                             'rgba(153, 102, 255, 0.2)',
                             'rgba(255, 159, 64, 0.2)'
                         ],
                         borderColor: [
-                            'rgba(255,99,132,1)',
                             'rgba(54, 162, 235, 1)',
+                            'rgba(255,99,132,1)',
                             'rgba(255, 206, 86, 1)',
                             'rgba(75, 192, 192, 1)',
                             'rgba(153, 102, 255, 1)',
@@ -84,9 +84,8 @@
 
                     // These labels appear in the legend and in the tooltips when hovering different arcs
                     labels: [
-                        'Red',
-                        'Yellow',
-                        'Blue'
+                        'Tareas con envío',
+                        'Tareas sin envío'
                     ]
                 }
             });
@@ -167,13 +166,12 @@
     <!-- topic summary -->
     <div class="col-sm-6">
       <div class="box-md-flashcard">
-        <h2 class="flashcard--title">TEMAS</h2>
+        <h2 class="flashcard--title">ÚLTIMAS COMPILACIONES</h2>
         <table class="table">
           <tbody>
-          @foreach($data['exercises'] as $exercise)
+          @foreach($data['submissions'] as $submission)
             <tr>
-              <td>{{$exercise['id']}}</td>
-              <td>{{$exercise['name']}}</td>
+              <td>{{$submission['exercise_name']}}</td>
             </tr>
           @endforeach
           </tbody>

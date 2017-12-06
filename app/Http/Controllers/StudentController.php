@@ -32,18 +32,18 @@ class StudentController extends Controller
             $exercise->average_for_student = $exercise->submissionsAverageByStudent($student);
         }
 
+        $numCourseExercises = Exercise::all()->count();
         $numExercises = $exercises->count();
         $exercises = $exercises->toArray();
 
-        $submissions = $student->submissions;
-        $numSubmissions = $student->submissions->count();
+        $submissions = $student->submissions->sortBy('created_at');
 
         $viewData = [
+            'numCourseExercises' => $numCourseExercises,
             'numExercises' => $numExercises,
             'exercises' => $exercises,
             'scoreAverage' => '',
-            'numSubmissions'=> $numSubmissions,
-            'submissionsAverage' =>'',
+            'submissions' => $submissions,
             'studentName' => $student->login,
             'studentAverage' => $student->average,
             'studentRiskTag' => $student->risk_tag
