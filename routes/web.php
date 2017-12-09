@@ -37,3 +37,7 @@ Route::get('/coursefeedback', function () {
 
 Route::get('/course/{course}/calendar', 'CalendarController@initCalendar')->name('calendar');
 
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
