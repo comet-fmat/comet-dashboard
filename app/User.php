@@ -8,25 +8,27 @@ use Illuminate\Database\Eloquent\Model;
 class User extends Model
 {
     protected $visible = ['id', 'login', 'average', 'number_submissions', 'risk_tag'];
-
-    protected $appends = array('average', 'number_submissions', 'risk_tag');
+    protected $appends = array('user_id', 'average', 'number_submissions', 'risk_tag');
 
     public function submissions(){
         return $this->hasMany('App\Submission');
-
     }
 
-    public function exercise()
-    {
+    public function getUserIdAttribute() {
+        return $this->id;
+    }
+
+    public function exercises() {
         return $this->hasManyThrough(
             'App\Exercise',
-            'App\Submissions',
-            'exercise_name',
+            'App\Submission',
+            'user_id',
             'name',
-            'id',
-            'id'
+            'user_id',
+            'exercise_name'
         );
     }
+
     public function points(){
 
     }
@@ -34,8 +36,20 @@ class User extends Model
 
     }
 
-    public function getAverageAttribute(){
-        return 10;
+    public function getAverageAttribute() {
+        $average = 0;
+        $submissions = $this->submissions;
+
+        if (count($submissions) > 0) {
+            foreach ($submissions as $submission) {
+                $average = $average + $submission->points;
+            }
+            $average = $average/ $submissions->count();
+
+            return number_format($average,2);
+        } else {
+            return 0;
+        }
     }
 
     public function getNumberSubmissionsAttribute(){
@@ -45,10 +59,12 @@ class User extends Model
     public function getRiskTagAttribute(){
         $riskTag = '';
 
-        if($this->average < 5){
+        if ($this->average < 5) {
             $riskTag = 'En riesgo';
-        }elseif( 5 < $this->average & $this->average < 8){
+        } elseif ($this->average < 7) {
             $riskTag = 'Regular';
+        } elseif ($this->average < 9) {
+            $riskTag = 'Apropiado';
         } else {
             $riskTag = 'Sobresaliente';
         }

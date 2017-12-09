@@ -152,7 +152,7 @@
           <tbody>
           @foreach($data['submissions'] as $submission)
             <tr>
-              <td>{{$submission['student_name']}}</td>
+              <td> <a href="{{ route('student_detail',[$current,$submission['user_id']]) }}"> {{$submission['student_name']}}</a></td>
               <td>{{$submission['points']}}</td>
               <td>{{$submission['all_tests_passed']}}</td>
               <td>{{$submission['pretest_error']}}</td>
