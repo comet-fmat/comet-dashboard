@@ -10,12 +10,8 @@ class User extends Model
     protected $visible = ['id', 'login', 'average', 'number_submissions', 'risk_tag'];
     protected $appends = array('user_id', 'average', 'number_submissions', 'risk_tag');
 
-    public function submissions(){
+    public function submissions() {
         return $this->hasMany('App\Submission');
-    }
-
-    public function getUserIdAttribute() {
-        return $this->id;
     }
 
     public function exercises() {
@@ -27,6 +23,32 @@ class User extends Model
             'user_id',
             'exercise_name'
         );
+    }
+
+    public function getUserIdAttribute() {
+        return $this->id;
+    }
+
+    public function getMaxSubmissionsPerExerciseAttribute() {
+        return $this->submissions
+            ->groupBy('exercise_name')->max()->count();
+    }
+
+    public function getMinSubmissionsPerExerciseAttribute() {
+        return $this->submissions
+            ->groupBy('exercise_name')->min()->count();
+    }
+
+    public function getAvgSubmissionsPerExerciseAttribute() {
+        $groups = $this->submissions->groupBy('exercise_name');
+
+        if ($groups->count() < 1) return 0;
+
+        $sum = 0;
+        foreach ($groups as $group) {
+            $sum += count($group);
+        }
+        return $sum / $groups->count();
     }
 
     public function points(){
