@@ -42,36 +42,16 @@ class StudentController extends Controller
         $numExercises = $exercises->count();
         $exercises = $exercises->toArray();
 
-        $maxAmountSubmissionInExercises = Submission::where('user_id', $student->id)
-            ->groupBy('exercise_name')
-            ->orderByRaw('count(*) desc')
-            ->limit(1)
-            ->count();
-
-        $minAmountSubmissionInExercises = Submission::where('user_id', $student->id)
-            ->groupBy('exercise_name')
-            ->orderByRaw('count(*) asc')
-            ->limit(1)
-            ->count();
-
-        $avgAmountSubmissionInExercises = Submission::where('user_id', $student->id)
-            ->selectRaw('count(*)')
-            ->groupBy('exercise_name')
-            ->get()
-            ->avg('count');
-
-        $submissions = $student->submissions->sortBy('created_at');
-
         $viewData = [
-            'maxAmountSubmissionInExercises' => $maxAmountSubmissionInExercises,
-            'minAmountSubmissionInExercises' => $minAmountSubmissionInExercises,
-            'avgAmountSubmissionInExercises' => $avgAmountSubmissionInExercises,
+            'maxAmountSubmissionInExercises' => $student->maxSubmissionsPerExercise,
+            'minAmountSubmissionInExercises' => $student->minSubmissionsPerExercise,
+            'avgAmountSubmissionInExercises' => $student->avgSubmissionsPerExercise,
 
             'numCourseExercises' => $numCourseExercises,
             'numExercises' => $numExercises,
             'exercises' => $exercises,
             'scoreAverage' => '',
-            'submissions' => $submissions,
+            'submissions' => $student->submissions->sortBy('created_at'),
             'studentName' => $student->login,
             'studentAverage' => $student->average,
             'studentRiskTag' => $student->risk_tag
