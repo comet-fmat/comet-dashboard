@@ -13,16 +13,23 @@
 
 
 Route::get('/home/', 'CourseController@display')->name('home');
-
-Route::get('/course/{course}', 'CourseController@display')->name('course');
 Route::get('/', function () {
-    return view('login');
-})->name('login');
+    return view('auth/login');
+})->name('auth-login');
 
-Route::get('/course/{course}/students', 'StudentController@index')->name('students');
-Route::get('/course/{course}/students/{student}', 'StudentController@display')->name('student_detail');
-Route::get('/course/{course}/exercises', 'ExerciseController@index')->name('exercises');
-Route::get('/course/{course}/exercises/{exercise}', 'ExerciseController@display')->name('exercise_detail');
+//Teacher authentication & authorization
+
+Route::group(['middleware' => ['teacher.auth']], function () {
+
+    Route::get('/course/{course}', 'CourseController@display')->name('course');
+    Route::get('/course/{course}/students', 'StudentController@index')->name('students');
+    Route::get('/course/{course}/students/{student}', 'StudentController@display')->name('student_detail');
+    Route::get('/course/{course}/exercises', 'ExerciseController@index')->name('exercises');
+    Route::get('/course/{course}/exercises/{exercise}', 'ExerciseController@display')->name('exercise_detail');
+    Route::get('/course/{course}/calendar', 'CalendarController@initCalendar')->name('calendar');
+});
+
+
 
 Route::get('/studentsfeedback', function () {
     return view('students_feedback');
@@ -36,9 +43,7 @@ Route::get('/coursefeedback', function () {
     return view('course_feedback');
 })->name('course_feedback');
 
-Route::get('/course/{course}/calendar', 'CalendarController@initCalendar')->name('calendar');
 
-
-Auth::routes();
+Route::post('/login', 'LoginController@authenticate')->name('login');
 
 Route::get('/home', 'HomeController@index')->name('home');
