@@ -14,7 +14,14 @@
 
 Route::get('/home/', 'CourseController@display')->name('home');
 Route::get('/', function () {
-    return view('auth/login');
+    $courses = collect(session('courses'));
+    if(!$courses->isEmpty()){
+        $courses = $courses->flip();
+        return  redirect()->route('course',$courses->first());
+    } else {
+        return view('auth/login');
+    }
+
 })->name('auth-login');
 
 //Teacher authentication & authorization
