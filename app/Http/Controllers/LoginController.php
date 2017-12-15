@@ -23,10 +23,12 @@ class LoginController extends Controller
                 session(['courses' => $user->teacherships->organization->courses->pluck('name', 'id')]);
                return redirect()->route('course', ['course' =>$user->teacherships->organization->courses->first()->id]);
             } else {
-                return ('Bad credentials');
+                return view("/auth/login", ["error_message"=> "El nombre de usuario o contraseña no es correcto" ]);
+                //return (hash('sha256',  $request['password']));
+                //return ('Bad credentials');
             }
         } else{
-            return ('Not a teacher');
+            return view("/auth/login", ["error_message"=> "El nombre de usuario no corresponde a un profesor" ]);
         }
     }
 }

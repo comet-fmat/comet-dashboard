@@ -18,25 +18,20 @@
 
                                     <input id="email" class="form-control login--input" name="email" placeholder="email "  value="{{ old('email') }}" required autofocus>
 
-                                    @if ($errors->has('email'))
-                                        <span class="help-block">
-                                            <strong>{{ $errors->first('username') }}</strong>
-                                        </span>
-                                    @endif
                             </div>
 
                             <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
                                     <input id="password" type="password" class="form-control login--input" name="password" placeholder="contrasena"  required>
 
-                                    @if ($errors->has('password'))
-                                        <span class="help-block">
-                                            <strong>{{ $errors->first('password') }}</strong>
-                                        </span>
-                                    @endif
+
                             </div>
 
                             <div class="form-group">
                                 <div class="col-md-12">
+                                    @if ($error_message != null)
+                                    <strong class="alert-danger">{{$error_message}}</strong>
+                                    @endif
+
                                     <button type="submit" class="btn btn-primary login--button">
                                         Login
                                     </button>
