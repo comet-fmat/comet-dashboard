@@ -16,8 +16,9 @@ class LoginController extends Controller
     {
         $user = User::where('email', '=', $request['email'])->first();
         //if user is a teacher
+        $hashedPassword = (hash('sha256',  $user->salt."--". $request['password']));
         if($user != null && $user->teacherships != null){
-            if($user->password_hash == $request['password']){
+            if($user->password_hash == $hashedPassword){
                 // Authentication passed...
                 session(['id' => $user->id]);
                 session(['courses' => $user->teacherships->organization->courses->pluck('name', 'id')]);

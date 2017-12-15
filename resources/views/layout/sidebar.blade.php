@@ -1,4 +1,4 @@
-{
+
 <!-- sidebar header -->
 <div class="row sidebar--header">
   <div class="col-xs-4 text-center">

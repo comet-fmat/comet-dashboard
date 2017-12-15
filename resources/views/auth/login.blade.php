@@ -28,7 +28,7 @@
 
                             <div class="form-group">
                                 <div class="col-md-12">
-                                    @if ($error_message != null)
+                                    @if (!empty($error_message))
                                     <strong class="alert-danger">{{$error_message}}</strong>
                                     @endif
 
