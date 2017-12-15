@@ -1,4 +1,4 @@
-
+{
 <!-- sidebar header -->
 <div class="row sidebar--header">
   <div class="col-xs-4 text-center">
@@ -24,15 +24,13 @@
 <!-- sidebar dropdown -->
 <div class="sidebar--dropdown dropdown">
   <button class="btn btn-default dropdown-toggle" type="button" id="course-select-menu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-    {{$courses->find($current)->name}}
+    {{$courses->get($current)}}
     <span class="caret"></span>
   </button>
   <ul class="dropdown-menu" aria-labelledby="course-select-menu">
-    @foreach($courses as $course)
-      <li><a href="{{ route('course',$course->id) }}">{{$course->name}}</a></li>
+    @foreach($courses as $course_id => $course_name)
+      <li><a href="{{ route('course', $course_id) }}">{{$course_name}}</a></li>
     @endforeach
-
-
   </ul>
 </div>
 <!-- ends sidebar dropdown -->

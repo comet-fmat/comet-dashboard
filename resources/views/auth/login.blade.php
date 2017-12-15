@@ -16,11 +16,11 @@
 
                             <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
 
-                                    <input id="email" type="email" class="form-control login--input" name="email" placeholder="usuario"  value="{{ old('email') }}" required autofocus>
+                                    <input id="email" class="form-control login--input" name="email" placeholder="email "  value="{{ old('email') }}" required autofocus>
 
                                     @if ($errors->has('email'))
                                         <span class="help-block">
-                                            <strong>{{ $errors->first('email') }}</strong>
+                                            <strong>{{ $errors->first('username') }}</strong>
                                         </span>
                                     @endif
                             </div>
