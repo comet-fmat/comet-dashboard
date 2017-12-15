@@ -10,30 +10,29 @@ class CalendarController extends Controller
 {
     public function initCalendar(Course $course){
         $events = [];
+        $exercises = $course->exercises;
 
-        $events =[
-            \Calendar::event(
-                "Semana de Ordinarios", //event title
+        foreach ($exercises as $exercise){
+            $event = \Calendar::event(
+                $exercise->name, //event title
                 true, //full day event?
-                new \DateTime('2017-12-1'), //start time (you can also use Carbon instead of DateTime)
-                new \DateTime('2017-12-8'), //end time (you can also use Carbon instead of DateTime)
-                'stringEventId' //optionally, you can specify an event ID
-            ),
-            \Calendar::event(
-                "Periodo Vacacional", //event title
-                true, //full day event?
-                new \DateTime('2017-12-19'), //start time (you can also use Carbon instead of DateTime)
-                new \DateTime('2017-12-29'), //end time (you can also use Carbon instead of DateTime)
-                'stringEventId' //optionally, you can specify an event ID
-            )
+                $exercise->publish_time, //start time, must be a DateTime object or valid DateTime format (http://bit.ly/1z7QWbg)
+                $exercise->publish_time, //end time, must be a DateTime object or valid DateTime format (http://bit.ly/1z7QWbg),
+                $exercise->id, //optional event ID
+                [
+                    'url' => route('exercise_detail',[$course->id, $exercise->id])
+                ]
+            );
+            array_push($events, $event);
+        }
 
-        ] ;
         $calendar = \Calendar::addEvents($events) //add an array with addEvents
         ->setOptions([ //set fullcalendar options
             'firstDay' => 1
         ]);
 
-        $courses = Course::get(['id','name']);
+        $session_courses = session('courses');
+        $courses = collect($session_courses);
         return view('calendar', ["calendar"=>$calendar, "courses"=>$courses, "current"=>$course->id]);
 
     }
