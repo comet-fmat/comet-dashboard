@@ -33,7 +33,8 @@ class CalendarController extends Controller
             'firstDay' => 1
         ]);
 
-        $courses = Course::get(['id','name']);
+        $session_courses = session('courses');
+        $courses = collect($session_courses);
         return view('calendar', ["calendar"=>$calendar, "courses"=>$courses, "current"=>$course->id]);
 
     }

@@ -21,13 +21,17 @@ class StudentController extends Controller
         $viewData =[
             'students' => $students
         ];
-        $courses = Course::get(['id','name']);
+
+        $session_courses = session('courses');
+        $courses = collect($session_courses);
 
         return view("students", ["data"=>$viewData, "courses"=>$courses, "current"=>$course->id]);
     }
 
     public function display(Course $course, User $student){
-        $courses = Course::get(['id','name']);
+        $session_courses = session('courses');
+        $courses = collect($session_courses);
+
         $exercises = $student->exercises;
 
         foreach ($exercises as $exercise) {
