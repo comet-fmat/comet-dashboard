@@ -20,16 +20,20 @@ class LoginController extends Controller
         if($user != null && $user->teacherships != null){
             if($user->password_hash == $hashedPassword){
                 // Authentication passed...
-                session(['id' => $user->id]);
-                session(['courses' => $user->teacherships->organization->courses->pluck('name', 'id')]);
-               return redirect()->route('course', ['course' =>$user->teacherships->organization->courses->first()->id]);
+                if($user->teacherships->organization && $user->teacherships->organization->courses){
+
+                    session(['id' => $user->id]);
+                    session(['courses' => $user->teacherships->organization->courses->pluck('name', 'id')]);
+                    return redirect()->route('course', ['course' =>$user->teacherships->organization->courses->first()->id]);
+
+                } else {
+                    return view("/auth/login", ["error_message"=> "No cuentas con cursos para visualizar" ]);
+                }
             } else {
                 return view("/auth/login", ["error_message"=> "El nombre de usuario o contraseña no es correcto" ]);
-                //return (hash('sha256',  $request['password']));
-                //return ('Bad credentials');
             }
         } else{
-            return view("/auth/login", ["error_message"=> "El nombre de usuario no corresponde a un profesor" ]);
+            return view("/auth/login", ["error_message"=> "El nombre de usuario no corresponde a un profesor registrado" ]);
         }
     }
 }
