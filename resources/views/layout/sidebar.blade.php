@@ -1,11 +1,11 @@
 
 <!-- sidebar header -->
 <div class="row sidebar--header">
-  <div class="col-xs-4 text-center">
-    <img class="sidebar--logo" src="/images/logo-tmc.png" />
+  <div class="col-xs-4 text-center no-padding">
+    <img class="sidebar--logo" src="/images/comet-logo.svg" />
   </div>
   <div class="col-xs-8 sidebar--title">
-    <span>testmycode</span>
+    <span>Comet FMAT</span>
   </div>
 </div>
 <!-- ends sidebar header -->
