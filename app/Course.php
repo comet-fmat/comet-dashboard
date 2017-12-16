@@ -28,13 +28,17 @@ class Course extends Model
     public function getScoreAverageAttribute(){
         $average = 0;
         $exercises = $this->exercises;
+        if (count($exercises) > 0) {
+            foreach ($exercises as $exercise) {
+                $average = $average + $exercise->getSubmissionsAverageAttribute();
+            }
+            $average = $average/$exercises->count();
 
-        foreach ($exercises as $exercise) {
-            $average = $average + $exercise->getSubmissionsAverageAttribute();
+            return number_format($average,2);
+        } else{
+            return 0;
         }
-        $average = $average/$exercises->count();
 
-        return number_format($average,2);
 
     }
     public function getStudentsAtRiskAttribute(){
