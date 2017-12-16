@@ -26,7 +26,8 @@ class CourseController extends Controller
     public function display(Course $course){
 
         $viewData = $course->toArray();
-        $courses = Course::get(['id','name']);
+        $session_courses = session('courses');
+        $courses = collect($session_courses);
         return view("home", ["data"=>$viewData, "courses"=>$courses, "current"=>$course->id]);
 
     }

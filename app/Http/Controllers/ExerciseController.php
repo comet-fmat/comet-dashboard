@@ -18,7 +18,8 @@ class ExerciseController extends Controller
         $viewData =[
             'exercises' => $exercises
         ];
-        $courses = Course::get(['id','name']);
+        $session_courses = session('courses');
+        $courses = collect($session_courses);
 
         return view("exercises", ["data"=>$viewData, "courses"=>$courses, "current"=>$course->id]);
     }
@@ -26,7 +27,8 @@ class ExerciseController extends Controller
     public function display(Course $course, Exercise $exercise)
     {
         $viewData = $exercise->toArray();
-        $courses = Course::get(['id','name']);
+        $session_courses = session('courses');
+        $courses = collect($session_courses);
         return view("homeworks_feedback", ["data"=>$viewData, "courses"=>$courses, "current"=>$course->id]);
     }
 }

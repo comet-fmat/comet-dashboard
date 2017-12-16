@@ -13,6 +13,11 @@ class User extends Model
     public function submissions() {
         return $this->hasMany('App\Submission');
     }
+    public function teacherships(){
+        return $this->hasOne('App\Teachership');
+    }
+
+
 
     public function exercises() {
         return $this->hasManyThrough(
