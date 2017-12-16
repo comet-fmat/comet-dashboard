@@ -17,6 +17,8 @@
   </div>
   <div class="col-xs-8 sidebar--title">
     <span>Mr. John Green</span>
+    <span><a href='{{ route('logout') }}'>Log out</a></span>
+
   </div>
 </div>
 <!-- ends sidebar user -->

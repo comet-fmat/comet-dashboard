@@ -36,21 +36,11 @@ Route::group(['middleware' => ['teacher.auth']], function () {
     Route::get('/course/{course}/calendar', 'CalendarController@initCalendar')->name('calendar');
 });
 
-
-
-Route::get('/studentsfeedback', function () {
-    return view('students_feedback');
-})->name('students_feedback');
-
-Route::get('/homeworksfeedback', function () {
-    return view('homeworks_feedback');
-})->name('homeworks_feedback');
-
-Route::get('/coursefeedback', function () {
-    return view('course_feedback');
-})->name('course_feedback');
-
-
 Route::post('/login', 'LoginController@authenticate')->name('login');
+
+Route::get('/logout', function () {
+    session()->flush();
+    return view('auth/login');
+})->name('logout');
 
 Route::get('/home', 'HomeController@index')->name('home');
