@@ -78,6 +78,11 @@ body
     padding-top: 30px;
 
     text-align: center;
+
+    button {
+        max-width: 100%;
+        overflow: hidden;
+    }
 }
 .sidebar--navigation
 {
