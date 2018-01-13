@@ -15,9 +15,11 @@ class LoginController extends Controller
     public function authenticate(Request $request)
     {
         $user = User::where('email', '=', $request['email'])->first();
-        //if user is a teacher
-        $hashedPassword = (hash('sha256',  $user->salt."--". $request['password']));
+
         if($user != null && $user->teacherships != null){
+          //if user is a teacher
+          $hashedPassword = (hash('sha256',  $user->salt."--". $request['password']));
+
             if($user->password_hash == $hashedPassword){
                 // Authentication passed...
                 if($user->teacherships->organization && $user->teacherships->organization->courses){
