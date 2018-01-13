@@ -22,7 +22,7 @@ class LoginController extends Controller
 
             if($user->password_hash == $hashedPassword){
                 // Authentication passed...
-                if($user->teacherships->organization && $user->teacherships->organization->courses){
+                if($user->teacherships->organization && $user->teacherships->organization->courses->isNotEmpty()){
 
                     session(['id' => $user->id]);
                     session(['courses' => $user->teacherships->organization->courses->pluck('name', 'id')]);
