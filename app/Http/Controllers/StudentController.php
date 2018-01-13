@@ -21,11 +21,11 @@ class StudentController extends Controller
         $viewData =[
             'students' => $students
         ];
-
+        $teachers_name = session('teachers_name');
         $session_courses = session('courses');
         $courses = collect($session_courses);
 
-        return view("students", ["data"=>$viewData, "courses"=>$courses, "current"=>$course->id]);
+        return view("students", ["data"=>$viewData, "courses"=>$courses,"teacher"=>$teachers_name, "current"=>$course->id]);
     }
 
     public function display(Course $course, User $student){

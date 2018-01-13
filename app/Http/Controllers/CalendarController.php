@@ -32,8 +32,9 @@ class CalendarController extends Controller
         ]);
 
         $session_courses = session('courses');
+        $teachers_name = session('teachers_name');
         $courses = collect($session_courses);
-        return view('calendar', ["calendar"=>$calendar, "courses"=>$courses, "current"=>$course->id]);
+        return view('calendar', ["calendar"=>$calendar, "courses"=>$courses, "teacher"=>$teachers_name, "current"=>$course->id]);
 
     }
 }

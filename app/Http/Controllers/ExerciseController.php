@@ -19,9 +19,10 @@ class ExerciseController extends Controller
             'exercises' => $exercises
         ];
         $session_courses = session('courses');
+        $teachers_name = session('teachers_name');
         $courses = collect($session_courses);
 
-        return view("exercises", ["data"=>$viewData, "courses"=>$courses, "current"=>$course->id]);
+        return view("exercises", ["data"=>$viewData, "courses"=>$courses, "teacher"=>$teachers_name, "current"=>$course->id]);
     }
 
     public function display(Course $course, Exercise $exercise)

@@ -7,8 +7,8 @@ use Illuminate\Database\Eloquent\Model;
 //osea students...
 class User extends Model
 {
-    protected $visible = ['id', 'login', 'average', 'number_submissions', 'risk_tag'];
-    protected $appends = array('user_id', 'average', 'number_submissions', 'risk_tag');
+    protected $visible = ['id', 'login', 'average', 'number_submissions', 'risk_tag', 'name'];
+    protected $appends = array('user_id', 'average', 'number_submissions', 'risk_tag', 'name');
 
     public function submissions() {
         return $this->hasMany('App\Submission');
@@ -16,7 +16,9 @@ class User extends Model
     public function teacherships(){
         return $this->hasOne('App\Teachership');
     }
-
+    public function userFieldValue(){
+        return $this->hasOne('App\UserFieldValue');
+    }
 
 
     public function exercises() {
@@ -32,6 +34,13 @@ class User extends Model
 
     public function getUserIdAttribute() {
         return $this->id;
+    }
+
+    public function getNameAttribute() {
+        if( $this->userFieldValue != null ){
+            return $this->userFieldValue->field_name;
+        }
+        return null;
     }
 
     public function getMaxSubmissionsPerExerciseAttribute() {

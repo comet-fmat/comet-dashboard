@@ -25,6 +25,7 @@ class LoginController extends Controller
                 if($user->teacherships->organization && $user->teacherships->organization->courses->isNotEmpty()){
 
                     session(['id' => $user->id]);
+                    session(['teachers_name' => $user->name]);
                     session(['courses' => $user->teacherships->organization->courses->pluck('name', 'id')]);
                     return redirect()->route('course', ['course' =>$user->teacherships->organization->courses->first()->id]);
 

@@ -16,7 +16,7 @@
     <img class="sidebar--user__picture" src="/images/profile_picture-user.jpg" />
   </div>
   <div class="col-xs-8 sidebar--title">
-    <span>Mr. John Green</span>
+    <span>{{$teacher}}</span><br/>
     <span><a href='{{ route('logout') }}'>Log out</a></span>
 
   </div>
